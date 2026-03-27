@@ -1,3 +1,2 @@
-# Welcome to your Lovable project
+# Welcome to nrusinh sarswati yog chintan math offcial website
 
-TODO: Document your project here
