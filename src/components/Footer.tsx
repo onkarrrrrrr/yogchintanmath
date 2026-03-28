@@ -87,16 +87,11 @@ const Footer = () => {
 
         <div className="border-t border-border mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-muted-foreground text-sm">
-            © {new Date().getFullYear()} Shri Nrusinh Saraswati Yog Chintan Math Trust. {t("footer.designedWith")}
+            © {new Date().getFullYear()} Shri Nrusinh Saraswati Yog Chintan Math Trust.
           </p>
-          <div className="flex gap-6 mt-4 md:mt-0">
-            <Link to="/contact" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-              Contact
-            </Link>
-            <Link to="/about" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-              About
-            </Link>
-          </div>
+          <p className="text-muted-foreground text-sm mt-4 md:mt-0">
+            Designed with devotion 🙏
+          </p>
         </div>
       </div>
     </footer>
