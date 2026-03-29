@@ -4,9 +4,14 @@ import { useI18n } from "@/lib/i18n";
 import SectionHeading from "@/components/SectionHeading";
 import { api } from "@/lib/api";
 import gallery1 from "@/assets/gallery-1.jpg";
+import gallery5 from "@/assets/gallery-5.jpg";
+import gallery3 from "@/assets/gallery-3.jpg";
+import whatsappImage1 from "@/assets/WhatsApp Image 2026-03-25 at 12.22.58 AM (1).jpeg";
 
 const ServicesPage = () => {
   const { t } = useI18n();
+
+  const serviceImages = [gallery5, gallery3, whatsappImage1];
 
   const { data: services, isLoading, error } = useQuery({
     queryKey: ['services'],
@@ -72,8 +77,12 @@ const ServicesPage = () => {
                   ))}
                 </ul>
               </div>
-              <div className={`rounded-xl shadow-lg w-full h-80 bg-gradient-saffron flex items-center justify-center text-6xl ${i % 2 === 1 ? "md:order-1" : ""}`}>
-                {s.icon}
+              <div className={`rounded-xl shadow-lg w-full h-80 overflow-hidden ${i % 2 === 1 ? "md:order-1" : ""}`}>
+                <img 
+                  src={serviceImages[i]} 
+                  alt={s.title}
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           ))}
