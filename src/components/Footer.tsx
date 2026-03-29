@@ -22,7 +22,7 @@ const Footer = () => {
               A sacred spiritual center dedicated to the worship of Shri Nrusinh Saraswati Swami Maharaj,
               offering Gurucharitra Parayan, meditation, yoga, and peaceful accommodation for spiritual seekers.
             </p>
-            <div className="flex gap-4">
+            <div className="flex flex-col gap-2">
               <a
                 href="tel:+919969324544"
                 className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
