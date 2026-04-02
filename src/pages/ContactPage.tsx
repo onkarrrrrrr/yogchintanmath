@@ -1,14 +1,22 @@
 import { Phone, Mail } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import SectionHeading from "@/components/SectionHeading";
+import contactBg from "@/assets/WhatsApp Image 2026-03-25 at 12.23.01 AM.jpeg";
 
 const ContactPage = () => {
   const { t } = useI18n();
 
   return (
     <div className="pt-20">
-      <div className="relative h-[40vh] overflow-hidden bg-gradient-saffron flex items-center justify-center">
-        <h1 className="font-display text-4xl md:text-5xl font-bold text-primary-foreground">{t("contact.title")}</h1>
+      <div className="relative h-[40vh] overflow-hidden">
+        <img 
+          src={contactBg} 
+          alt="Contact Us Background" 
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+          <h1 className="font-display text-4xl md:text-5xl font-bold text-primary-foreground">{t("contact.title")}</h1>
+        </div>
       </div>
 
       <section className="py-20 bg-background">
