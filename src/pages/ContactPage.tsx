@@ -1,35 +1,9 @@
-import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
-import { Phone, Mail, MapPin, Send, Loader2 } from "lucide-react";
+import { Phone, Mail } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import SectionHeading from "@/components/SectionHeading";
-import { toast } from "sonner";
-import { api, ContactFormData } from "@/lib/api";
 
 const ContactPage = () => {
   const { t } = useI18n();
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-
-  const contactMutation = useMutation({
-    mutationFn: api.submitContactForm,
-    onSuccess: (data) => {
-      toast.success(data.message);
-      setForm({ name: "", email: "", message: "" });
-    },
-    onError: (error) => {
-      toast.error("Failed to send message. Please try again.");
-      console.error("Contact form error:", error);
-    }
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!form.name || !form.email || !form.message) {
-      toast.error("Please fill in all fields.");
-      return;
-    }
-    contactMutation.mutate(form);
-  };
 
   return (
     <div className="pt-20">
@@ -39,7 +13,7 @@ const ContactPage = () => {
 
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="max-w-2xl">
             {/* Contact info */}
             <div>
               <h3 className="font-display text-2xl font-bold text-foreground mb-6">{t("contact.title")}</h3>
@@ -94,54 +68,6 @@ const ContactPage = () => {
                   title="Location Map"
                 />
               </div>
-            </div>
-
-            {/* Contact form */}
-            <div>
-              <form onSubmit={handleSubmit} className="bg-card rounded-xl p-8 shadow-lg border border-border space-y-6">
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">{t("contact.name")}</label>
-                  <input
-                    type="text"
-                    required
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:ring-2 focus:ring-ring outline-none transition-shadow"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">{t("contact.email")}</label>
-                  <input
-                    type="email"
-                    required
-                    value={form.email}
-                    onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:ring-2 focus:ring-ring outline-none transition-shadow"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">{t("contact.message")}</label>
-                  <textarea
-                    required
-                    rows={5}
-                    value={form.message}
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:ring-2 focus:ring-ring outline-none transition-shadow resize-none"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  disabled={contactMutation.isPending}
-                  className="w-full flex items-center justify-center gap-2 bg-gradient-saffron text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {contactMutation.isPending ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                  ) : (
-                    <Send className="w-4 h-4" />
-                  )}
-                  {contactMutation.isPending ? "Sending..." : t("contact.send")}
-                </button>
-              </form>
             </div>
           </div>
         </div>
